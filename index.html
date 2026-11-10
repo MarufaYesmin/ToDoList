@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="todo-container">
+
+        <header class="header">
+            <h1>My Tasks</h1>
+            <p>Organize your day, one task at a time.</p>
+        </header>
+
+        <form id="task-form" class="task-form">
+
+            <input
+                type="text"
+                id="task-input"
+                placeholder="Enter a new task..."
+                maxlength="100"
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit" id="add-task-btn">
+                + Add Task
+            </button>
+
+        </form>
+
+        <section class="task-summary">
+
+            <div class="summary-item">
+                <span>Total Tasks</span>
+                <h2 id="total-count">0</h2>
+            </div>
+
+            <div class="summary-item">
+                <span>Completed</span>
+                <h2 id="completed-count">0</h2>
+            </div>
+
+            <div class="summary-item">
+                <span>Remaining</span>
+                <h2 id="remaining-count">0</h2>
+            </div>
+
+        </section>
+
+        <nav class="filters" aria-label="Task filters">
+
+            <button
+                class="filter-btn active"
+                type="button"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                type="button"
+                data-filter="pending"
+            >
+                Pending
+            </button>
+
+            <button
+                class="filter-btn"
+                type="button"
+                data-filter="completed"
+            >
+                Completed
+            </button>
+
+        </nav>
+
+        <section class="task-section">
+            <ul id="task-list"></ul>
+            <p id="empty-state">
+                No tasks yet. Add your first task!
+            </p>
+        </section>
+
+        <footer class="footer">
+            <button type="button" id="clear-completed">
+                Clear Completed
+            </button>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

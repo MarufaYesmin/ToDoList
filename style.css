@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #ffffff;
+
+    background:
+        radial-gradient(circle at 15% 15%, #bd35d8 0%, transparent 35%),
+        radial-gradient(circle at 85% 85%, #247cff 0%, transparent 40%),
+        linear-gradient(135deg, #100b2e, #1e1450, #071b3b);
+}
+
+.todo-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 35px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.16),
+        rgba(255, 255, 255, 0.06)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+    transition: 0.3s ease;
+}
+
+.todo-container:hover {
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #ffb8f0,
+        #9dc8ff
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.header p {
+    margin-top: 10px;
+    color: #c9c9e8;
+    font-size: 0.95rem;
+}
+
+.task-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+#task-input {
+    flex: 1;
+    min-width: 0;
+    height: 52px;
+    padding: 0 16px;
+
+    color: #ffffff;
+    font-size: 0.95rem;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+#task-input::placeholder {
+    color: #b8b8d3;
+}
+
+#task-input:focus {
+    border-color: #bd83ff;
+    box-shadow: 0 0 15px rgba(189, 131, 255, 0.25);
+}
+
+#add-task-btn {
+    padding: 0 20px;
+
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#add-task-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+}
+
+.task-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.summary-item {
+    padding: 18px 10px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+}
+
+.summary-item span {
+    color: #c9c9e8;
+    font-size: 0.85rem;
+}
+
+.summary-item h2 {
+    margin-top: 8px;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.filter-btn {
+    padding: 9px 20px;
+
+    color: #d2d2ea;
+    font-size: 0.9rem;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.filter-btn.active {
+    color: #ffffff;
+
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+
+    border-color: transparent;
+
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+}
+
+#task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px;
+
+    background: rgba(255, 255, 255, 0.09);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 13px;
+
+    transition: 0.3s ease;
+
+    animation: taskAppear 0.3s ease;
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.task-checkbox {
+    width: 19px;
+    height: 19px;
+
+    accent-color: #a855f7;
+
+    cursor: pointer;
+}
+
+.task-text {
+    flex: 1;
+
+    color: #ffffff;
+    font-size: 0.95rem;
+
+    overflow-wrap: anywhere;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #a7a7c4;
+}
+
+.delete-btn {
+    padding: 7px 12px;
+
+    color: #ffffff;
+
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.delete-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 15px rgba(244, 63, 94, 0.3);
+}
+
+#empty-state {
+    padding: 25px 10px;
+
+    color: #bdbdd7;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 22px;
+    text-align: center;
+}
+
+#clear-completed {
+    padding: 10px 20px;
+
+    color: #ffb5ca;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    background: rgba(244, 63, 94, 0.1);
+
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    border-radius: 10px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#clear-completed:hover {
+    color: #ffffff;
+    background: #e11d48;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #f0abfc;
+    outline-offset: 3px;
+}
+
+@keyframes taskAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 500px) {
+
+    .todo-container {
+        padding: 25px 18px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .task-form {
+        flex-direction: column;
+    }
+
+    #task-input,
+    #add-task-btn {
+        width: 100%;
+        height: 48px;
+    }
+
+    .task-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .summary-item:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .filters {
+        gap: 7px;
+    }
+
+    .filter-btn {
+        padding: 8px 13px;
+        font-size: 0.8rem;
+    }
+
+    .task-item {
+        padding: 13px 10px;
+    }
+
+}
